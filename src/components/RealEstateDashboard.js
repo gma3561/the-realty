@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  Star, Search, Download, Eye, Heart, Phone, MapPin, Calendar, User, 
-  TrendingUp, Filter, Building, Users, DollarSign, BarChart3, Shield,
-  Bot, Globe, Database, Bell, Target, Zap, CheckCircle, AlertTriangle
+  Search, Building2, Home, BarChart3, Users, TrendingUp, 
+  MapPin, Edit3, Eye, Download
 } from 'lucide-react';
-import ProposalSectionComponent from './ProposalSection';
 
 const RealEstateDashboard = () => {
   const [selectedProperties, setSelectedProperties] = useState(new Set());
-  const [sortBy, setSortBy] = useState('recent');
-  const [filterRegion, setFilterRegion] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('dashboard');
 
   // 통계 데이터
   const stats = {
     total: 186,
-    naver: 26,
-    kakao: 0,
     myProperties: 47,
     interest: 7,
-    calls: 315,
-    consultations: 0
+    consultations: 15
   };
 
   // 샘플 매물 데이터
@@ -29,48 +22,59 @@ const RealEstateDashboard = () => {
     {
       id: '3340846',
       type: '아파트',
-      name: '한남동',
-      address: '한남동로2길 10층 102호',
-      area: '276.67',
-      room: '2437',
-      price: '6억2000',
-      date: '25.05.20',
-      status: '광고미허',
-      tags: ['수정하기']
+      name: '한남동 센트럴파크',
+      address: '서울시 용산구 한남동 10층 102호',
+      area: '84.67㎡',
+      rooms: '3룸',
+      price: '12억',
+      date: '2024.12.20',
+      status: '매매'
     },
     {
       id: '3269846',
       type: '아파트',
-      name: '논현동',
-      address: '강남안암수길 10층 301호',
-      area: '267.91',
-      room: '2449',
-      price: '6억',
-      date: '25.04.14',
-      status: '광고미허',
-      tags: ['수정하기']
+      name: '논현동 래미안',
+      address: '서울시 강남구 논현동 15층 301호',
+      area: '104.91㎡',
+      rooms: '4룸',
+      price: '18억',
+      date: '2024.12.15',
+      status: '매매'
     },
     {
       id: '3268824',
       type: '아파트',
-      name: '논현동',
-      address: '논현동한성길 50층 401호',
-      area: '284.41',
-      room: '2449',
-      price: '6억5000',
-      date: '25.04.14',
-      status: '매매',
-      tags: ['광고하기', '수정하기']
+      name: '청담동 아이파크',
+      address: '서울시 강남구 청담동 20층 401호',
+      area: '134.41㎡',
+      rooms: '4룸',
+      price: '25억',
+      date: '2024.12.10',
+      status: '매매'
+    },
+    {
+      id: '3265414',
+      type: '오피스텔',
+      name: '역삼동 타워팰리스',
+      address: '서울시 강남구 역삼동 12층 205호',
+      area: '45.76㎡',
+      rooms: '1룸',
+      price: '6억',
+      date: '2024.12.08',
+      status: '전세'
+    },
+    {
+      id: '3253023',
+      type: '빌라',
+      name: '서초동 현대빌라',
+      address: '서울시 서초구 서초동 3층',
+      area: '66.79㎡',
+      rooms: '2룸',
+      price: '8억',
+      date: '2024.12.05',
+      status: '매매'
     }
   ];
-
-  const handleSelectAll = () => {
-    if (selectedProperties.size === properties.length) {
-      setSelectedProperties(new Set());
-    } else {
-      setSelectedProperties(new Set(properties.map(p => p.id)));
-    }
-  };
 
   const handleSelectProperty = (id) => {
     const newSelected = new Set(selectedProperties);
@@ -83,208 +87,156 @@ const RealEstateDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* 헤더 */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="bg-white shadow-lg border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
-              <div className="flex items-center">
-                <Building className="w-8 h-8 text-blue-600 mr-2" />
-                <h1 className="text-xl font-bold text-gray-900">더부동산 - 자동화 솔루션</h1>
-              </div>
-              <nav className="flex space-x-8">
-                <button 
-                  onClick={() => setActiveSection('dashboard')}
-                  className={`font-medium pb-4 border-b-2 ${
-                    activeSection === 'dashboard' 
-                      ? 'text-blue-600 border-blue-600' 
-                      : 'text-gray-500 border-transparent hover:text-gray-700'
-                  }`}
-                >
-                  매물관리
-                </button>
-                <button 
-                  onClick={() => setActiveSection('proposal')}
-                  className={`font-medium pb-4 border-b-2 ${
-                    activeSection === 'proposal' 
-                      ? 'text-blue-600 border-blue-600' 
-                      : 'text-gray-500 border-transparent hover:text-gray-700'
-                  }`}
-                >
-                  자동화 제안서
-                </button>
-              </nav>
+            <div className="flex items-center">
+              <Building2 className="w-8 h-8 text-indigo-600 mr-3" />
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                부동산 관리 시스템
+              </h1>
             </div>
+            <nav className="flex space-x-1">
+              <button 
+                onClick={() => setActiveSection('dashboard')}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  activeSection === 'dashboard' 
+                    ? 'bg-indigo-100 text-indigo-700 shadow-sm' 
+                    : 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100'
+                }`}
+              >
+                대시보드
+              </button>
+              <button 
+                onClick={() => setActiveSection('proposal')}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  activeSection === 'proposal' 
+                    ? 'bg-indigo-100 text-indigo-700 shadow-sm' 
+                    : 'text-slate-600 hover:text-indigo-600 hover:bg-slate-100'
+                }`}
+              >
+                자동화 제안서
+              </button>
+            </nav>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-6xl mx-auto px-6 py-8">
         {activeSection === 'dashboard' && <DashboardSection />}
         {activeSection === 'proposal' && <ProposalSection />}
       </div>
     </div>
   );
 
-  // 대시보드 섹션 컴포넌트
+  // 대시보드 섹션
   function DashboardSection() {
     return (
-      <>
-        {/* 성과 현황 카드 */}
-        <div className="bg-white rounded-lg p-6 mb-6 border-l-4 border-cyan-400">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">MY 영업활동 현황</h2>
-            <button className="bg-red-400 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-500">
-              광고등록
-            </button>
+      <div className="space-y-6">
+        {/* 통계 카드 */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <StatCard 
+            title="전체 매물" 
+            value={stats.total} 
+            icon={<Home className="w-6 h-6" />}
+            color="bg-gradient-to-r from-blue-500 to-cyan-500"
+          />
+          <StatCard 
+            title="MY 매물" 
+            value={stats.myProperties} 
+            icon={<Building2 className="w-6 h-6" />}
+            color="bg-gradient-to-r from-emerald-500 to-teal-500"
+          />
+          <StatCard 
+            title="관심 매물" 
+            value={stats.interest} 
+            icon={<TrendingUp className="w-6 h-6" />}
+            color="bg-gradient-to-r from-orange-500 to-amber-500"
+          />
+          <StatCard 
+            title="상담 완료" 
+            value={stats.consultations} 
+            icon={<Users className="w-6 h-6" />}
+            color="bg-gradient-to-r from-purple-500 to-pink-500"
+          />
+        </div>
+
+        {/* 검색 섹션 */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <div className="flex items-center mb-4">
+            <Search className="w-5 h-5 text-slate-400 mr-2" />
+            <h3 className="text-lg font-semibold text-slate-800">매물 검색</h3>
           </div>
           
-          <div className="grid grid-cols-7 gap-4">
-            <div className="bg-orange-500 text-white rounded-lg p-4 text-center">
-              <div className="text-sm mb-1">출래이지</div>
-              <div className="text-2xl font-bold">{stats.total}</div>
-            </div>
-            <StatCard title="네이버광고" value={stats.naver} color="gray" />
-            <StatCard title="광고율" value={stats.kakao} color="gray" />
-            <StatCard title="MY 매물" value={stats.myProperties} color="blue" />
-            <StatCard title="잠정전화" value={stats.interest} color="gray" />
-            <StatCard title="월전전화" value={stats.calls} color="gray" />
-            <StatCard title="계약전화" value={stats.consultations} color="green" />
-          </div>
-        </div>
-
-        {/* 매물찾기 섹션 */}
-        <PropertySearchSection />
-
-        {/* 매물 리스트 */}
-        <PropertyListSection />
-      </>
-    );
-  }
-
-  // 매물 검색 섹션 컴포넌트
-  function PropertySearchSection() {
-    return (
-      <div className="bg-white rounded-lg p-6 mb-6">
-        <div className="flex items-center mb-4">
-          <Search className="w-5 h-5 text-gray-400 mr-2" />
-          <h3 className="font-medium text-gray-900">매물찾기</h3>
-          <span className="ml-2 text-sm text-gray-500">* 매물명과 전체물건 거래전과 속기업체니다.</span>
-        </div>
-
-        <div className="space-y-4">
-          <div className="flex space-x-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">매물 검색</label>
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
               <input
                 type="text"
-                className="border border-gray-300 rounded-md px-3 py-2 w-64"
-                placeholder="매물명을 입력하세요"
+                className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                placeholder="매물명 또는 주소를 입력하세요"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-4 items-end">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">지역조건</label>
-              <select className="border border-gray-300 rounded-md px-3 py-2">
-                <option>매물주유</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">시/도</label>
-              <select className="border border-gray-300 rounded-md px-3 py-2">
-                <option>서울</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">구/군</label>
-              <select className="border border-gray-300 rounded-md px-3 py-2">
+            <div className="flex gap-3">
+              <select className="border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                <option>전체 지역</option>
                 <option>강남구</option>
+                <option>서초구</option>
+                <option>용산구</option>
               </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">읍/면/동</label>
-              <select className="border border-gray-300 rounded-md px-3 py-2">
-                <option>전체</option>
+              <select className="border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                <option>전체 유형</option>
+                <option>아파트</option>
+                <option>오피스텔</option>
+                <option>빌라</option>
               </select>
+              <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+                검색
+              </button>
             </div>
           </div>
+        </div>
 
-          <div className="flex space-x-4">
-            <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50">
-              초기화
-            </button>
-            <button className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600">
-              검색
-            </button>
+        {/* 매물 리스트 */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200">
+          <div className="p-6 border-b border-slate-200">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold text-slate-800">매물 목록</h3>
+              <div className="flex gap-3">
+                <button className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors">
+                  <Download className="w-4 h-4" />
+                  엑셀 다운로드
+                </button>
+                <button className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors">
+                  <Eye className="w-4 h-4" />
+                  미리보기
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  // 매물 리스트 섹션 컴포넌트
-  function PropertyListSection() {
-    return (
-      <div className="bg-white rounded-lg p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="font-medium text-gray-900">매물 리스트</h3>
-          <div className="flex space-x-2">
-            <button className="flex items-center space-x-1 border border-gray-300 px-3 py-1 rounded text-sm">
-              <Download className="w-4 h-4" />
-              <span>엑셀하기</span>
-            </button>
-            <button className="flex items-center space-x-1 border border-gray-300 px-3 py-1 rounded text-sm">
-              <Eye className="w-4 h-4" />
-              <span>백업내용</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-600 text-white">
-              <tr>
-                <th className="p-3 text-left">
-                  <input
-                    type="checkbox"
-                    checked={selectedProperties.size === properties.length}
-                    onChange={handleSelectAll}
-                    className="rounded border-gray-300"
-                  />
-                </th>
-                <th className="p-3 text-left">
-                  <Star className="w-4 h-4" />
-                </th>
-                <th className="p-3 text-left">매물번호</th>
-                <th className="p-3 text-left">매물주유</th>
-                <th className="p-3 text-left">지역명/상세주소</th>
-                <th className="p-3 text-left">면적</th>
-                <th className="p-3 text-left">거래유형/관리비유</th>
-                <th className="p-3 text-left">광고내역</th>
-                <th className="p-3 text-left">등록자</th>
-                <th className="p-3 text-left">등록일</th>
-              </tr>
-            </thead>
-            <tbody>
-              {properties.map((property) => (
-                <PropertyRow key={property.id} property={property} />
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="flex justify-center mt-6">
-          <div className="flex space-x-1">
-            <button className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">이전</button>
-            <button className="px-3 py-1 bg-blue-500 text-white rounded">1</button>
-            <button className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">2</button>
-            <button className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">3</button>
-            <button className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">다음</button>
+          
+          <div className="overflow-hidden">
+            <table className="w-full">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">선택</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">매물정보</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">면적/구조</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">가격</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">등록일</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">상태</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-slate-600">관리</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {properties.map((property) => (
+                  <PropertyRow key={property.id} property={property} />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -294,73 +246,169 @@ const RealEstateDashboard = () => {
   // 매물 행 컴포넌트
   function PropertyRow({ property }) {
     return (
-      <tr className="border-b border-gray-100 hover:bg-gray-50">
-        <td className="p-3">
+      <tr className="hover:bg-slate-50 transition-colors">
+        <td className="px-6 py-4">
           <input
             type="checkbox"
             checked={selectedProperties.has(property.id)}
             onChange={() => handleSelectProperty(property.id)}
-            className="rounded border-gray-300"
+            className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded"
           />
         </td>
-        <td className="p-3">
-          <Star className="w-4 h-4 text-gray-400 cursor-pointer hover:text-yellow-400" />
-        </td>
-        <td className="p-3">
-          <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-medium">
-            A
-          </span>
-          <span className="ml-2 text-blue-600 font-medium">{property.id}</span>
-        </td>
-        <td className="p-3 text-gray-700">{property.type}</td>
-        <td className="p-3">
-          <div className="font-medium text-gray-900">{property.name}</div>
-          <div className="text-sm text-gray-500">{property.address}</div>
-        </td>
-        <td className="p-3">
-          <div className="text-sm">
-            <div>[전]{property.area}</div>
-            <div>[전]{property.room}</div>
+        <td className="px-6 py-4">
+          <div className="flex items-start space-x-3">
+            <div className="flex-shrink-0">
+              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+                <Home className="w-5 h-5 text-white" />
+              </div>
+            </div>
+            <div>
+              <div className="font-medium text-slate-900">{property.name}</div>
+              <div className="text-sm text-slate-500 flex items-center mt-1">
+                <MapPin className="w-3 h-3 mr-1" />
+                {property.address}
+              </div>
+              <div className="text-xs text-indigo-600 bg-indigo-50 px-2 py-1 rounded mt-1 inline-block">
+                {property.type}
+              </div>
+            </div>
           </div>
         </td>
-        <td className="p-3">
-          <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-            매매
+        <td className="px-6 py-4">
+          <div className="text-sm text-slate-900">{property.area}</div>
+          <div className="text-sm text-slate-500">{property.rooms}</div>
+        </td>
+        <td className="px-6 py-4">
+          <div className="font-semibold text-slate-900">{property.price}</div>
+        </td>
+        <td className="px-6 py-4">
+          <div className="text-sm text-slate-500">{property.date}</div>
+        </td>
+        <td className="px-6 py-4">
+          <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
+            property.status === '매매' 
+              ? 'bg-emerald-100 text-emerald-700' 
+              : 'bg-blue-100 text-blue-700'
+          }`}>
+            {property.status}
           </span>
         </td>
-        <td className="p-3">
-          <div className="space-y-1">
-            {property.tags.map((tag, index) => (
-              <button
-                key={index}
-                className={`px-2 py-1 rounded text-xs font-medium ${
-                  tag === '광고하기' 
-                    ? 'bg-orange-100 text-orange-600 border border-orange-200' 
-                    : 'bg-blue-100 text-blue-600 border border-blue-200'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+        <td className="px-6 py-4">
+          <button className="flex items-center gap-1 text-indigo-600 hover:text-indigo-800 transition-colors">
+            <Edit3 className="w-4 h-4" />
+            수정
+          </button>
         </td>
-        <td className="p-3 text-gray-700">성의</td>
-        <td className="p-3 text-gray-700">{property.date}</td>
       </tr>
     );
   }
 
-  // 제안서 섹션 컴포넌트
-  function ProposalSection() {
-    return <ProposalSectionComponent />;
+  // 통계 카드 컴포넌트
+  function StatCard({ title, value, icon, color }) {
+    return (
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-slate-600 mb-1">{title}</p>
+            <p className="text-3xl font-bold text-slate-900">{value}</p>
+          </div>
+          <div className={`p-3 rounded-lg ${color} text-white`}>
+            {icon}
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  // StatCard 컴포넌트
-  function StatCard({ title, value, color = 'blue' }) {
+  // 제안서 섹션
+  function ProposalSection() {
     return (
-      <div className={`bg-white rounded-lg p-4 shadow-sm border-l-4 border-${color}-500`}>
-        <div className="text-sm text-gray-600 mb-1">{title}</div>
-        <div className={`text-2xl font-bold text-${color}-600`}>{value}</div>
+      <div className="space-y-8">
+        {/* 헤더 */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+            부동산 업계 자동화 솔루션
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            AI와 자동화 기술로 부동산 업무 효율성을 300% 향상시키는 종합 솔루션
+          </p>
+        </div>
+
+        {/* 주요 특징 */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <FeatureCard
+            icon={<BarChart3 className="w-8 h-8" />}
+            title="데이터 기반 의사결정"
+            description="실시간 시장 분석과 통계로 정확한 판단을 지원합니다."
+            color="bg-gradient-to-r from-blue-500 to-cyan-500"
+          />
+          <FeatureCard
+            icon={<TrendingUp className="w-8 h-8" />}
+            title="업무 자동화"
+            description="반복 작업을 자동화하여 생산성을 극대화합니다."
+            color="bg-gradient-to-r from-emerald-500 to-teal-500"
+          />
+          <FeatureCard
+            icon={<Users className="w-8 h-8" />}
+            title="고객 관리 시스템"
+            description="체계적인 고객 관리로 만족도를 향상시킵니다."
+            color="bg-gradient-to-r from-purple-500 to-pink-500"
+          />
+        </div>
+
+        {/* ROI 섹션 */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+          <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">예상 효과</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-lg font-semibold text-slate-800 mb-4">정량적 효과</h4>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                  <span className="text-slate-600">업무 처리 시간</span>
+                  <span className="font-semibold text-emerald-600">70% 단축</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                  <span className="text-slate-600">매물 등록 시간</span>
+                  <span className="font-semibold text-emerald-600">85% 감소</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                  <span className="text-slate-600">고객 응답 속도</span>
+                  <span className="font-semibold text-emerald-600">400% 향상</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-slate-800 mb-4">ROI 전망</h4>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                  <span className="text-slate-600">1년차</span>
+                  <span className="font-semibold text-indigo-600">150% ROI</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                  <span className="text-slate-600">2년차</span>
+                  <span className="font-semibold text-indigo-600">300% ROI</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                  <span className="text-slate-600">3년차</span>
+                  <span className="font-semibold text-indigo-600">500% ROI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 특징 카드 컴포넌트
+  function FeatureCard({ icon, title, description, color }) {
+    return (
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-all hover:-translate-y-1">
+        <div className={`w-16 h-16 ${color} rounded-lg flex items-center justify-center text-white mb-4`}>
+          {icon}
+        </div>
+        <h3 className="text-xl font-semibold text-slate-900 mb-2">{title}</h3>
+        <p className="text-slate-600">{description}</p>
       </div>
     );
   }
