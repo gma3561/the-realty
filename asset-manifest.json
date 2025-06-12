@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/the-realty/static/css/main.3db510f3.css",
-    "main.js": "/the-realty/static/js/main.10b297c7.js",
+    "main.css": "/the-realty/static/css/main.bda5be5d.css",
+    "main.js": "/the-realty/static/js/main.44e77ea9.js",
     "static/js/453.9c2867f8.chunk.js": "/the-realty/static/js/453.9c2867f8.chunk.js",
     "index.html": "/the-realty/index.html",
-    "main.3db510f3.css.map": "/the-realty/static/css/main.3db510f3.css.map",
-    "main.10b297c7.js.map": "/the-realty/static/js/main.10b297c7.js.map",
+    "main.bda5be5d.css.map": "/the-realty/static/css/main.bda5be5d.css.map",
+    "main.44e77ea9.js.map": "/the-realty/static/js/main.44e77ea9.js.map",
     "453.9c2867f8.chunk.js.map": "/the-realty/static/js/453.9c2867f8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3db510f3.css",
-    "static/js/main.10b297c7.js"
+    "static/css/main.bda5be5d.css",
+    "static/js/main.44e77ea9.js"
   ]
 }
