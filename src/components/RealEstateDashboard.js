@@ -579,40 +579,100 @@ const RealEstateDashboard = () => {
                   ],
                   kpi: "임장→계약 전환율 7%p 향상"
                 }
-              ].map((funnel) => (
-                <div key={funnel.step} className={`border-l-4 border-${funnel.color}-500 bg-${funnel.color}-50 p-6 rounded-r-lg`}>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className={`w-8 h-8 bg-${funnel.color}-500 text-white rounded-full flex items-center justify-center font-bold mr-4`}>
-                        {funnel.step}
-                      </div>
-                      <h3 className={`text-xl font-bold text-${funnel.color}-800`}>{funnel.title}</h3>
-                    </div>
-                    <div className="text-right">
-                      <div className={`text-sm text-${funnel.color}-600`}>현재 → 목표</div>
-                      <div className={`font-bold text-${funnel.color}-800`}>{funnel.current} → {funnel.target}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className={`font-medium text-${funnel.color}-700 mb-3`}>🤖 자동화 로직</h4>
-                      <ul className={`space-y-1 text-sm text-${funnel.color}-700`}>
-                        {funnel.automation.map((item, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <Zap className={`w-4 h-4 mr-2 mt-0.5 text-${funnel.color}-500 flex-shrink-0`} />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className={`bg-white p-4 rounded-lg border border-${funnel.color}-200`}>
-                      <h4 className={`font-medium text-${funnel.color}-700 mb-2`}>📊 핵심 KPI</h4>
-                      <p className={`text-lg font-bold text-${funnel.color}-800`}>{funnel.kpi}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                             ].map((funnel) => {
+                 const getColorClasses = (color) => {
+                   const colorMap = {
+                     blue: {
+                       border: 'border-blue-500',
+                       bg: 'bg-blue-50',
+                       bgIcon: 'bg-blue-500',
+                       text: 'text-blue-800',
+                       textSecondary: 'text-blue-600',
+                       textTertiary: 'text-blue-700',
+                       textIcon: 'text-blue-500',
+                       borderSecondary: 'border-blue-200'
+                     },
+                     green: {
+                       border: 'border-green-500',
+                       bg: 'bg-green-50',
+                       bgIcon: 'bg-green-500',
+                       text: 'text-green-800',
+                       textSecondary: 'text-green-600',
+                       textTertiary: 'text-green-700',
+                       textIcon: 'text-green-500',
+                       borderSecondary: 'border-green-200'
+                     },
+                     purple: {
+                       border: 'border-purple-500',
+                       bg: 'bg-purple-50',
+                       bgIcon: 'bg-purple-500',
+                       text: 'text-purple-800',
+                       textSecondary: 'text-purple-600',
+                       textTertiary: 'text-purple-700',
+                       textIcon: 'text-purple-500',
+                       borderSecondary: 'border-purple-200'
+                     },
+                     orange: {
+                       border: 'border-orange-500',
+                       bg: 'bg-orange-50',
+                       bgIcon: 'bg-orange-500',
+                       text: 'text-orange-800',
+                       textSecondary: 'text-orange-600',
+                       textTertiary: 'text-orange-700',
+                       textIcon: 'text-orange-500',
+                       borderSecondary: 'border-orange-200'
+                     },
+                     red: {
+                       border: 'border-red-500',
+                       bg: 'bg-red-50',
+                       bgIcon: 'bg-red-500',
+                       text: 'text-red-800',
+                       textSecondary: 'text-red-600',
+                       textTertiary: 'text-red-700',
+                       textIcon: 'text-red-500',
+                       borderSecondary: 'border-red-200'
+                     }
+                   };
+                   return colorMap[color] || colorMap.blue;
+                 };
+
+                 const colors = getColorClasses(funnel.color);
+
+                 return (
+                   <div key={funnel.step} className={`border-l-4 ${colors.border} ${colors.bg} p-6 rounded-r-lg`}>
+                     <div className="flex items-center justify-between mb-4">
+                       <div className="flex items-center">
+                         <div className={`w-8 h-8 ${colors.bgIcon} text-white rounded-full flex items-center justify-center font-bold mr-4`}>
+                           {funnel.step}
+                         </div>
+                         <h3 className={`text-xl font-bold ${colors.text}`}>{funnel.title}</h3>
+                       </div>
+                       <div className="text-right">
+                         <div className={`text-sm ${colors.textSecondary}`}>현재 → 목표</div>
+                         <div className={`font-bold ${colors.text}`}>{funnel.current} → {funnel.target}</div>
+                       </div>
+                     </div>
+                     
+                     <div className="grid md:grid-cols-2 gap-6">
+                       <div>
+                         <h4 className={`font-medium ${colors.textTertiary} mb-3`}>🤖 자동화 로직</h4>
+                         <ul className={`space-y-1 text-sm ${colors.textTertiary}`}>
+                           {funnel.automation.map((item, idx) => (
+                             <li key={idx} className="flex items-start">
+                               <Zap className={`w-4 h-4 mr-2 mt-0.5 ${colors.textIcon} flex-shrink-0`} />
+                               {item}
+                             </li>
+                           ))}
+                         </ul>
+                       </div>
+                       <div className={`bg-white p-4 rounded-lg border ${colors.borderSecondary}`}>
+                         <h4 className={`font-medium ${colors.textTertiary} mb-2`}>📊 핵심 KPI</h4>
+                         <p className={`text-lg font-bold ${colors.text}`}>{funnel.kpi}</p>
+                       </div>
+                     </div>
+                   </div>
+                 );
+               })}
             </div>
           </div>
         </div>
@@ -695,45 +755,76 @@ const RealEstateDashboard = () => {
                   }
                 ]
               }
-            ].map((category) => (
-              <div key={category.category} className={`border border-${category.color}-200 rounded-xl p-6 bg-${category.color}-50`}>
-                <div className="flex items-center mb-6">
-                  <div className={`p-3 bg-${category.color}-500 rounded-lg text-white mr-4`}>
-                    {category.icon}
-                  </div>
-                  <h3 className={`text-xl font-bold text-${category.color}-800`}>{category.category}</h3>
-                </div>
+                         ].map((category) => {
+               const getColorClasses = (color) => {
+                 const colorMap = {
+                   blue: {
+                     border: 'border-blue-200',
+                     bg: 'bg-blue-50',
+                     bgIcon: 'bg-blue-500',
+                     text: 'text-blue-800',
+                     textSecondary: 'text-blue-600'
+                   },
+                   green: {
+                     border: 'border-green-200',
+                     bg: 'bg-green-50',
+                     bgIcon: 'bg-green-500',
+                     text: 'text-green-800',
+                     textSecondary: 'text-green-600'
+                   },
+                   purple: {
+                     border: 'border-purple-200',
+                     bg: 'bg-purple-50',
+                     bgIcon: 'bg-purple-500',
+                     text: 'text-purple-800',
+                     textSecondary: 'text-purple-600'
+                   }
+                 };
+                 return colorMap[color] || colorMap.blue;
+               };
 
-                <div className="space-y-4">
-                  {category.metrics.map((metric, idx) => (
-                    <div key={idx} className="bg-white rounded-lg p-4 border border-gray-200">
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="font-medium text-gray-900">{metric.name}</h4>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          metric.status === '위험' ? 'bg-red-100 text-red-700' :
-                          metric.status === '개선필요' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-green-100 text-green-700'
-                        }`}>
-                          {metric.status}
-                        </span>
-                      </div>
-                      
-                      <div className="grid md:grid-cols-3 gap-4">
-                        <div>
-                          <div className="text-sm text-gray-600 mb-1">현재 → 목표</div>
-                          <div className="font-bold text-gray-900">{metric.current} → {metric.target}</div>
-                          <div className={`text-sm font-medium text-${category.color}-600`}>{metric.improvement}</div>
-                        </div>
-                        <div className="md:col-span-2">
-                          <div className="text-sm text-gray-600 mb-2">개선 액션 플랜</div>
-                          <p className="text-sm text-gray-800">{metric.action}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+               const colors = getColorClasses(category.color);
+
+               return (
+                 <div key={category.category} className={`border ${colors.border} rounded-xl p-6 ${colors.bg}`}>
+                   <div className="flex items-center mb-6">
+                     <div className={`p-3 ${colors.bgIcon} rounded-lg text-white mr-4`}>
+                       {category.icon}
+                     </div>
+                     <h3 className={`text-xl font-bold ${colors.text}`}>{category.category}</h3>
+                   </div>
+
+                   <div className="space-y-4">
+                     {category.metrics.map((metric, idx) => (
+                       <div key={idx} className="bg-white rounded-lg p-4 border border-gray-200">
+                         <div className="flex items-center justify-between mb-3">
+                           <h4 className="font-medium text-gray-900">{metric.name}</h4>
+                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                             metric.status === '위험' ? 'bg-red-100 text-red-700' :
+                             metric.status === '개선필요' ? 'bg-yellow-100 text-yellow-700' :
+                             'bg-green-100 text-green-700'
+                           }`}>
+                             {metric.status}
+                           </span>
+                         </div>
+                         
+                         <div className="grid md:grid-cols-3 gap-4">
+                           <div>
+                             <div className="text-sm text-gray-600 mb-1">현재 → 목표</div>
+                             <div className="font-bold text-gray-900">{metric.current} → {metric.target}</div>
+                             <div className={`text-sm font-medium ${colors.textSecondary}`}>{metric.improvement}</div>
+                           </div>
+                           <div className="md:col-span-2">
+                             <div className="text-sm text-gray-600 mb-2">개선 액션 플랜</div>
+                             <p className="text-sm text-gray-800">{metric.action}</p>
+                           </div>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+               );
+             })}
           </div>
         </div>
 
