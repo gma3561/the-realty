@@ -828,55 +828,7 @@ const RealEstateDashboard = () => {
           </div>
         </div>
 
-        {/* 투자 대비 효과 */}
-        <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-8 text-white">
-          <h2 className="text-2xl font-bold mb-8 text-center">💰 투자 대비 효과 (ROI)</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">4,700만원</div>
-              <div className="text-lg opacity-90">초기 개발 투자</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">500만원/월</div>
-              <div className="text-lg opacity-90">인건비 절약</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">8,000만원/월</div>
-              <div className="text-lg opacity-90">추가 매출</div>
-            </div>
-          </div>
 
-          <div className="text-center mt-8 p-6 bg-white bg-opacity-20 rounded-lg">
-            <div className="text-3xl font-bold mb-2">1,612% ROI</div>
-            <div className="text-lg">투자 회수 기간: 0.7개월</div>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center bg-gray-900 rounded-xl p-8 text-white">
-          <h2 className="text-2xl font-bold mb-4">지금 시작하세요!</h2>
-          <p className="text-lg mb-6 opacity-90">무료 상담으로 현재 상황 분석 + 맞춤 솔루션 제안</p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-lg">
-              <Phone className="w-5 h-5 mr-2" />
-              <span>02-1234-5678</span>
-            </div>
-            <div className="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-lg">
-              <Mail className="w-5 h-5 mr-2" />
-              <span>automation@realestate.com</span>
-            </div>
-            <div className="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-lg">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              <span>@부동산자동화</span>
-            </div>
-          </div>
-
-          <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition-colors">
-            무료 상담 신청하기
-          </button>
-        </div>
       </div>
     );
   }
